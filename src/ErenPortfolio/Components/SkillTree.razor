@@ -1,0 +1,21 @@
+<div class="skill-layout">
+    <div class="skill-tree" role="group" aria-label="Explore skills">
+        <div class="skill-root"><span class="skill-root-icon">⌘</span><span>THE BUILDER'S TOOLKIT</span></div>
+        <div class="skill-branches">
+            @foreach (var branch in branches) { <div class="skill-branch"><span class="branch-label">@branch.Label</span>
+                @foreach (var skill in branch.Skills) { <button class="skill-node @(selected.Name == skill.Name ? "selected" : "")" aria-pressed="@((selected.Name == skill.Name).ToString().ToLowerInvariant())" @onclick="() => selected = skill"><span class="node-icon">@skill.Icon</span><span>@skill.Name</span><span class="node-dot"></span></button> }
+            </div> }
+        </div>
+    </div>
+    <aside class="skill-inspector" aria-live="polite" aria-atomic="true"><span class="section-index">EQUIPMENT DETAILS</span><span class="inspector-icon">@selected.Icon</span><h3>@selected.Name</h3><span class="skill-status">@selected.Status</span><p>@selected.Description</p><span class="inspector-footer">✦ A toolkit that keeps growing.</span></aside>
+</div>
+@code {
+    private record Skill(string Name, string Icon, string Status, string Description);
+    private record Branch(string Label, Skill[] Skills);
+    private static readonly Branch[] branches = [
+        new("GAME DEVELOPMENT", [new("C#", "C#", "CORE TOOL", "My main language for turning gameplay ideas into working systems. From Unity scripts to this portfolio's interactive components."), new("Unity", "◇", "CORE TOOL", "The engine behind Square, WoodsMan and Rocket-San. My workspace for gameplay, animation and interactive worlds."), new("Gameplay", "✚", "CREATIVE PRACTICE", "Building mechanics, testing interactions and iterating on the small details that make a game feel good.")]),
+        new("SOFTWARE", [new(".NET", "{ }", "BUILDING WITH", "The C# ecosystem powering this site. Blazor WebAssembly lets the portfolio and its mini game run directly in your browser."), new("Git", "⌥", "DAILY TOOL", "Version control for experiments, collaboration and shipping work. Every meaningful milestone has a place in the project history."), new("Web", "</>", "BUILDING WITH", "HTML, CSS and JavaScript for accessible interfaces, responsive layouts and a little creative interaction.")]),
+        new("EXPLORATION", [new("Embedded", "▦", "EXPLORING", "An interest in software that connects to the physical world: small devices, real constraints and hands-on problem solving."), new("Python & AI", "✧", "EXPLORING", "Exploring data science and artificial intelligence alongside game development, with Python as a versatile tool for experiments."), new("AR", "⌖", "PROJECT EXPERIENCE", "Augmented reality through the AR Room Scanner project: exploring how digital experiences can connect with physical spaces.")])
+    ];
+    private Skill selected = branches[0].Skills[0];
+}

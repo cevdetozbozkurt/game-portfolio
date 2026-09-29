@@ -6,12 +6,15 @@ namespace ErenPortfolio.Data;
 public static class PortfolioContent
 {
     public const string GitHub = "https://github.com/cevdetozbozkurt";
+    public const string LinkedIn = "https://www.linkedin.com/in/cevdetozbzkrt/";
+    public const string ItchIo = "https://ceox.itch.io/";
+    public const string Email = "ce.ozbozkurt@gmail.com";
     public static IReadOnlyList<PortfolioProject> Projects { get; } =
     [
         new("square", "Square", "Games", "GAME JAM",
             "Small shape. Big ideas. A game-jam experiment in level design and playful mechanics.",
-            "Built during a game jam, Square explores core gameplay mechanics and level design within a short development cycle. It is a project about turning an idea into something playable with a team.",
-            ["Unity", "C#", "Level design"], null, "Pixel illustration inspired by Square; not a gameplay screenshot.", null),
+            "A minimalist puzzle game created for Mağara Jam #5. A square sets out to find where it belongs. My credited roles were game developer and animator, collaborating with a team on an original game without ready-made assets. Available for Windows on itch.io.",
+            ["Unity", "C#", "Animation"], "assets/images/square.png", "Official Square artwork from the game's itch.io page.", "https://github.com/cevdetozbozkurt/MagaraJam5", "https://omerfi.itch.io/square"),
         new("woodsman", "WoodsMan", "Games", "INTERNSHIP PROJECT",
             "Chop, collect, grow. An arcade idle game built around a satisfying gameplay loop.",
             "An arcade idle game developed during a summer internship. Explore the project repository and its gameplay images to see the world, resource collection and progression in action.",

@@ -1,33 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ErenPortfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cevdet Eren Özbozkurt — Game Developer</title>
+    <meta name="description" content="Game developer and creative builder based in Türkiye. Explore Cevdet Eren Özbozkurt's Unity and C# games, interactive experiments, and pixel art portfolio." />
+    <meta name="theme-color" content="#10130f" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Eren.dev — A little code. A whole new world." />
+    <meta property="og:description" content="Games, curious experiments, and a few pixels of personality. The portfolio of Cevdet Eren Özbozkurt." />
+    <meta property="og:url" content="https://cevdetozbozkurt.github.io/game-portfolio/" />
+    <link rel="canonical" href="https://cevdetozbozkurt.github.io/game-portfolio/" />
     <base href="/" />
     <link rel="preload" id="webassembly" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="preload" href="assets/fonts/space-regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="assets/fonts/pixel.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="stylesheet" href="css/app.css" />
-    <!-- If you add any scoped CSS files, uncomment the following to load them
-    <link href="ErenPortfolio.styles.css" rel="stylesheet" /> -->
     <script type="importmap"></script>
 </head>
-
 <body>
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
-    </div>
-
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="." class="reload">Reload</a>
-        <span class="dismiss">🗙</span>
-    </div>
-    <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
+    <div id="app"><div class="boot-screen"><h1>eren.dev_</h1><p>Loading a little world of possibilities.</p><div class="boot-progress" role="status" aria-label="Loading portfolio"></div><p>Cevdet Eren Özbozkurt · Game & Software Developer</p><a href="https://github.com/cevdetozbozkurt">Explore my GitHub while you wait ↗</a></div></div>
+    <noscript><p>This interactive portfolio needs JavaScript and WebAssembly. Find my games on <a href="https://ceox.itch.io/">itch.io</a>, or email <a href="mailto:ce.ozbozkurt@gmail.com">ce.ozbozkurt@gmail.com</a>.</p></noscript>
+    <div id="blazor-error-ui" role="alert">The world couldn't load. Please try again.<a href=".">Reload the portfolio</a></div>
+    <script src="js/portfolio.js"></script>
+    <script src="_framework/blazor.webassembly#[.{fingerprint}].js" autostart="false"></script>
+    <script>Blazor.start().catch(() => { document.getElementById('blazor-error-ui').style.display = 'block'; });</script>
 </body>
-
 </html>
