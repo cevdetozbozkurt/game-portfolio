@@ -25,3 +25,20 @@ Projeler `src/ErenPortfolio/Data/PortfolioContent.cs` dosyasındadır. Kaynaklar
 ## Sonraki aşama
 
 GitHub Pages ASP.NET Core sunucusu veya veritabanı çalıştırmaz. Daha sonra aynı Blazor arayüzüne ASP.NET Core Web API, EF Core/PostgreSQL ve kimlik doğrulamalı yönetim paneli eklenebilir. Bu sürüm çalışan bir C# projesidir; C#'a yeniden yazılması gerekmez.
+
+## Canlı site ve yayın
+
+[Portfolyoyu aç](https://cevdetozbozkurt.github.io/game-portfolio/)
+
+`master` dalına gönderilen her değişiklik GitHub Actions ile otomatik doğrulanıp yayımlanır. Kurulum ve içerik güncelleme bilgileri: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md). Kaynaklar ve font lisansları: [docs/CONTENT-SOURCES.md](docs/CONTENT-SOURCES.md).
+
+## Kontroller
+
+```sh
+dotnet run --project tests/Portfolio.Checks
+dotnet publish src/ErenPortfolio -c Release -o artifacts/publish
+```
+
+Mini oyun sınırları, kristal toplama, yeniden başlatma ve proje filtreleri için 16 otomatik davranış kontrolü vardır. Masaüstü ve mobil tarayıcıda filtreler, detay penceresi, klavye kontrolleri, menü, yetenek ağacı ve taşma kontrol edilir.
+
+İlk HTML/CSS çalışmanız `docs/original-prototype/` altında ve Git geçmişinde saklanır.
