@@ -35,7 +35,7 @@
         <div class="section-topline"><span class="section-index">01 / THE GAME LIBRARY</span><span class="micro-copy">A FEW WORLDS I'VE WORKED ON</span></div>
         <div class="section-heading"><div><h2 id="projects-title">Select your adventure<span class="accent">.</span></h2><p>A growing collection of games, prototypes and things I made to learn.</p></div><a class="text-link" href="@PortfolioContent.GitHub" target="_blank" rel="noopener noreferrer">All repositories <span aria-hidden="true">↗</span></a></div>
         <div class="filter-row" role="group" aria-label="Filter projects">
-            @foreach (var category in categories) { <button class="filter @(activeCategory == category ? "active" : "")" aria-pressed="@((activeCategory == category).ToString().ToLowerInvariant())" @onclick="() => activeCategory = category">@(category == "All" ? "All projects" : category) <span>@PortfolioContent.Filter(category).Count().ToString("00")</span></button> }
+            @foreach (var category in PortfolioContent.Categories) { <button class="filter @(activeCategory == category ? "active" : "")" aria-pressed="@((activeCategory == category).ToString().ToLowerInvariant())" @onclick="() => activeCategory = category">@(category == "All" ? "All projects" : category) <span>@PortfolioContent.Filter(category).Count().ToString("00")</span></button> }
             <span class="filter-count" role="status">@PortfolioContent.Filter(activeCategory).Count() projects loaded</span>
         </div>
         <div class="project-grid">
@@ -88,12 +88,12 @@
         <div class="tags">@foreach(var tech in selectedProject.Technologies) { <span>@tech</span> }</div><div class="dialog-actions">
         @if (selectedProject.SourceUrl is not null) { <a class="button button-secondary" href="@selectedProject.SourceUrl" target="_blank" rel="noopener noreferrer">View source ↗</a> }
         @if (selectedProject.PlayUrl is not null) { <a class="button button-primary" href="@selectedProject.PlayUrl" target="_blank" rel="noopener noreferrer">View on itch.io ↗</a> }
-        @if (selectedProject.SourceUrl is null && selectedProject.PlayUrl is null) { <p class="archive-note">An idea for later: a small, fresh AR experiment.</p> }
+        @if (selectedProject.VideoUrl is not null) { <a class="button button-secondary" href="@selectedProject.VideoUrl" target="_blank" rel="noopener noreferrer">Watch recorded test ↗</a> }
+        @if (selectedProject.ArchiveNote is not null) { <p class="archive-note">@selectedProject.ArchiveNote</p> }
         </div></div>
     }
 </dialog>
 @code {
-    private readonly string[] categories = ["All", "Games", "Experiments"];
     private string activeCategory = "All";
     private bool menuOpen, motionPaused, openDialogAfterRender;
     private PortfolioProject? selectedProject;

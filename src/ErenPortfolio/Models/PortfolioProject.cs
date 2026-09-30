@@ -6,7 +6,8 @@ public sealed record PortfolioProject(
     string? Image, string ImageAlt, string? SourceUrl, string? PlayUrl = null,
     string Status = "Source available", string Role = "",
     string ImageLabel = "IN-GAME CAPTURE", string[]? Highlights = null,
-    ProjectMedia[]? Gallery = null)
+    ProjectMedia[]? Gallery = null, string? VideoUrl = null,
+    string? Recognition = null, string? ArchiveNote = null)
 {
     public IReadOnlyList<ProjectMedia> Media => Image is null ? [] :
         new[] { new ProjectMedia(Image, ImageAlt) }.Concat(Gallery ?? []).ToArray();
