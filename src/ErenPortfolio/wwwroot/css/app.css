@@ -711,6 +711,36 @@ h2 {
   color: var(--dim);
   font-size: 11px;
 }
+.library-lens {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0 0 26px;
+  padding: 14px 17px;
+  border-left: 2px solid #536e3e;
+  background: #192218;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.library-lens > span {
+  color: var(--accent);
+}
+.project-recognition,
+.dialog-copy .project-recognition {
+  align-self: flex-start;
+  color: #e0c898;
+  background: #302d20;
+  border: 1px solid #63583b;
+  padding: 5px 9px;
+  margin: 0 0 14px;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.dialog-copy .project-recognition {
+  display: inline-block;
+  margin: 14px 0 0;
+}
 .project-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -757,6 +787,15 @@ h2 {
   object-fit: contain;
   padding: 18px;
   background: #202425;
+}
+.project-card.pomodoro .project-art img {
+  object-fit: contain;
+  padding: 12px;
+  background: #ededd5;
+}
+.project-card.image-search .project-art img {
+  object-fit: contain;
+  background: #ffffff;
 }
 .project-card.woodsman .project-art img {
   object-position: center 54%;
@@ -2262,26 +2301,26 @@ h1[tabindex="-1"]:focus {
   outline: none;
 }
 @media (min-width: 621px) {
-  .project-card.ar-room {
+  .project-card.project-wide {
     grid-column: 1/-1;
     display: grid;
     grid-template-columns: 1fr 2fr;
   }
-  .ar-room .project-art-button {
+  .project-wide .project-art-button {
     height: 100%;
   }
-  .ar-room .project-art {
+  .project-wide .project-art {
     height: 100%;
     min-height: 215px;
     aspect-ratio: auto;
   }
-  .ar-room .project-body {
+  .project-wide .project-body {
     padding: 27px 32px;
   }
-  .ar-room .project-description {
+  .project-wide .project-description {
     min-height: 0;
   }
-  .ar-room .project-bottom {
+  .project-wide .project-bottom {
     margin-top: 15px;
   }
 }
@@ -2365,30 +2404,6 @@ h1[tabindex="-1"]:focus {
   padding: 14px 16px;
   background: #222b1c;
   border-left: 2px solid #627c48;
-}
-@media (min-width: 621px) {
-  .project-card.flappy {
-    grid-column: 1/-1;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-  }
-  .flappy .project-art-button {
-    height: 100%;
-  }
-  .flappy .project-art {
-    height: 100%;
-    min-height: 215px;
-    aspect-ratio: auto;
-  }
-  .flappy .project-body {
-    padding: 27px 32px;
-  }
-  .flappy .project-description {
-    min-height: 0;
-  }
-  .flappy .project-bottom {
-    margin-top: 15px;
-  }
 }
 @media (max-width: 620px) {
   .project-meta {

@@ -20,7 +20,7 @@ dotnet run --project src/ErenPortfolio --urls http://localhost:5180
 
 ## İçerik
 
-Projeler `src/ErenPortfolio/Data/PortfolioContent.cs` dosyasındadır. Kaynaklar: mevcut portfolyo, paylaşılan çalışma planı ve herkese açık GitHub proje README'leri. Bilinmeyen iş tarihleri, proje sonuçları ve bağlantılar uydurulmaz. Gerçek oyun görüntüleri ilgili proje depolarından alınır; konsept çizimler ayrıca etiketlenir.
+Projeler ve filtre kategorileri `src/ErenPortfolio/Data/PortfolioContent.cs` dosyasındadır. Kaynaklar: mevcut portfolyo, paylaşılan çalışma planı, kullanıcının CV'si ve herkese açık GitHub proje sayfaları. Bilinmeyen iş tarihleri, proje sonuçları ve bağlantılar uydurulmaz. Gerçek oyun/uygulama görüntüleri ilgili proje depolarından alınır; konsept çizimler ayrıca etiketlenir. `scripts/generate-project-art.py` CV projelerinin özgün SVG konsept görsellerini yeniden üretir.
 
 ## Sonraki aşama
 
@@ -39,8 +39,8 @@ dotnet run --project tests/Portfolio.Checks
 dotnet publish src/ErenPortfolio -c Release -o artifacts/publish
 ```
 
-Mini oyun sınırları, kristal toplama, yeniden başlatma, proje filtreleri, galeri verileri ve yayın görselleri için 21 otomatik kontrol vardır. Masaüstü ve mobil tarayıcıda filtreler, detay penceresi, galeri, klavye kontrolleri, menü, yetenek ağacı ve taşma kontrol edilir.
+Mini oyun sınırları, kristal toplama, yeniden başlatma, proje filtreleri, galeri verileri, arşiv notları, düzeltilen CV bağlantısı ve yayın görselleri için 28 otomatik kontrol vardır. Masaüstü ve mobil tarayıcıda filtreler, detay penceresi, galeri, klavye kontrolleri, menü, yetenek ağacı ve taşma kontrol edilir.
 
-Site bir kişisel oyun ve öğrenme arşividir; ticari hizmet veya iş teklifi çağrısı içermez. Kütüphanede altı oyun/prototip ve iki deney bulunur. Kaynağı bulunamayan AR Room Scanner geçmiş çalışma olarak etiketlenmiştir. Gelecekte yapılabilecek yeni bir AR prototipi mevcut projenin yerine tamamlanmış gibi gösterilmez.
+Site bir kişisel oyun ve öğrenme arşividir; ticari hizmet veya iş teklifi çağrısı içermez. Kütüphanede 19 proje bulunur: yedi oyun, üç yapay zekâ/veri projesi, üç web/bulut projesi ve altı deney. Oyunlar ilk açılışta seçilidir; tüm projelere filtrelerden ulaşılır. Kaynağı bulunamayan AR Room Scanner ve bulut kampı projesi, bağlantı paylaşılmayan RAG ve eğitim oyunu ayrı açıklamalı kayıtlarla gösterilir. Gelecekte yapılabilecek yeni bir AR prototipi mevcut projenin yerine tamamlanmış gibi gösterilmez. CV'deki Python alıştırmaları bağlantısı doğrulanan doğru depoya yönlendirilir; çelişkili proje tarihleri yayımlanmaz.
 
 İlk HTML/CSS çalışmanız `docs/original-prototype/` altında ve Git geçmişinde saklanır.

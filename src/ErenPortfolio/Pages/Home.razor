@@ -32,22 +32,25 @@
     </section>
     <div class="tool-strip"><div class="shell tool-strip-inner"><span class="tool-strip-label">TOOLS OF THE TRADE</span><span class="tool-name"><b>◇</b> Unity</span><span class="tool-name"><b class="tool-csharp">C#</b> C#</span><span class="tool-name"><b>⌘</b> .NET</span><span class="tool-name"><b>⌥</b> Git & GitHub</span><span class="strip-note">Ideas → code → play.</span></div></div>
     <section class="section shell" id="projects" aria-labelledby="projects-title">
-        <div class="section-topline"><span class="section-index">01 / THE GAME LIBRARY</span><span class="micro-copy">A FEW WORLDS I'VE WORKED ON</span></div>
-        <div class="section-heading"><div><h2 id="projects-title">Select your adventure<span class="accent">.</span></h2><p>A growing collection of games, prototypes and things I made to learn.</p></div><a class="text-link" href="@PortfolioContent.GitHub" target="_blank" rel="noopener noreferrer">All repositories <span aria-hidden="true">↗</span></a></div>
+        <div class="section-topline"><span class="section-index">01 / THE PROJECT LIBRARY</span><span class="micro-copy">GAMES FIRST. CURIOSITY EVERYWHERE.</span></div>
+        <div class="section-heading"><div><h2 id="projects-title">Select your adventure<span class="accent">.</span></h2><p>Games, research and small experiments. Different paths, the same love of building.</p></div><a class="text-link" href="@PortfolioContent.GitHub" target="_blank" rel="noopener noreferrer">All repositories <span aria-hidden="true">↗</span></a></div>
         <div class="filter-row" role="group" aria-label="Filter projects">
             @foreach (var category in PortfolioContent.Categories) { <button class="filter @(activeCategory == category ? "active" : "")" aria-pressed="@((activeCategory == category).ToString().ToLowerInvariant())" @onclick="() => activeCategory = category">@(category == "All" ? "All projects" : category) <span>@PortfolioContent.Filter(category).Count().ToString("00")</span></button> }
             <span class="filter-count" role="status">@PortfolioContent.Filter(activeCategory).Count() projects loaded</span>
         </div>
+        <div class="library-lens" aria-live="polite" aria-atomic="true"><span aria-hidden="true">✦</span><p>@CategoryCaption</p></div>
         <div class="project-grid">
             @foreach (var project in PortfolioContent.Filter(activeCategory))
             {
-                <article class="project-card @project.Id" @key="project.Id">
+                <article class="project-card @project.Id @(project.Id == "animal-colouring" ? "project-wide" : "")" @key="project.Id">
                     <button class="project-art-button" @onclick="() => OpenProject(project)" aria-label="View @project.Title project details"><div class="project-art">
                         @if (project.Image is not null) { <img src="@project.Image" alt="@project.ImageAlt" loading="lazy" width="640" height="360" /> }
                         else { <div class="ar-concept" aria-hidden="true"><div class="room-grid"></div><div class="scan-cube"></div><span class="scan-cross">+</span><span class="scan-label">MAPPING THE REAL WORLD</span></div> }
                         <span class="art-label">@project.ImageLabel</span><span class="art-open" aria-hidden="true">↗</span>
                     </div></button>
-                    <div class="project-body"><p class="project-context"><span class="small-square"></span>@project.Context</p><h3>@project.Title</h3><p class="project-description">@project.Description</p><p class="project-status">@project.Status</p><div class="project-bottom"><div class="tags">@foreach(var tech in project.Technologies.Take(2)) { <span>@tech</span> }</div><button class="project-details-link" @onclick="() => OpenProject(project)" aria-label="Read about @project.Title">Details <span aria-hidden="true">↗</span></button></div></div>
+                    <div class="project-body"><p class="project-context"><span class="small-square"></span>@project.Context</p><h3>@project.Title</h3>
+                        @if (project.Recognition is not null) { <p class="project-recognition"><span aria-hidden="true">✧</span> @project.Recognition</p> }
+                        <p class="project-description">@project.Description</p><p class="project-status">@project.Status</p><div class="project-bottom"><div class="tags">@foreach(var tech in project.Technologies.Take(2)) { <span>@tech</span> }</div><button class="project-details-link" @onclick="() => OpenProject(project)" aria-label="Read about @project.Title">Details <span aria-hidden="true">↗</span></button></div></div>
                 </article>
             }
         </div>
@@ -83,7 +86,9 @@
                 </figcaption>
             </figure>
         }
-        <div class="dialog-copy"><h2 id="dialog-title">@selectedProject.Title</h2><div class="project-meta"><span><small>MY PART</small>@selectedProject.Role</span><span><small>PROJECT STATUS</small>@selectedProject.Status</span></div><p>@selectedProject.Detail</p>
+        <div class="dialog-copy"><h2 id="dialog-title">@selectedProject.Title</h2>
+        @if (selectedProject.Recognition is not null) { <p class="project-recognition"><span aria-hidden="true">✧</span> @selectedProject.Recognition</p> }
+        <div class="project-meta"><span><small>MY PART</small>@selectedProject.Role</span><span><small>PROJECT STATUS</small>@selectedProject.Status</span></div><p>@selectedProject.Detail</p>
         @if (selectedProject.Highlights is { Length: > 0 }) { <ul class="project-highlights">@foreach(var highlight in selectedProject.Highlights) { <li>@highlight</li> }</ul> }
         <div class="tags">@foreach(var tech in selectedProject.Technologies) { <span>@tech</span> }</div><div class="dialog-actions">
         @if (selectedProject.SourceUrl is not null) { <a class="button button-secondary" href="@selectedProject.SourceUrl" target="_blank" rel="noopener noreferrer">View source ↗</a> }
@@ -94,7 +99,15 @@
     }
 </dialog>
 @code {
-    private string activeCategory = "All";
+    private string activeCategory = "Games";
+    private string CategoryCaption => activeCategory switch
+    {
+        "Games" => "My main quest: game jams, solo prototypes and playful worlds. Explore the other tabs for the side quests.",
+        "AI & Data" => "Following the patterns: computer vision, transport forecasting and conversations grounded in documents.",
+        "Web & Cloud" => "Beyond the game engine: web interfaces, C# applications and experiments in cloud infrastructure.",
+        "Experiments" => "The learning shelf: small tools, early automation, familiar game loops and an AR exploration.",
+        _ => "The full collection, from game worlds to data, tools and everything I built along the way."
+    };
     private bool menuOpen, motionPaused, openDialogAfterRender;
     private PortfolioProject? selectedProject;
     private int activeImage;
