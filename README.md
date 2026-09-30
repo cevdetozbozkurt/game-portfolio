@@ -39,6 +39,8 @@ dotnet run --project tests/Portfolio.Checks
 dotnet publish src/ErenPortfolio -c Release -o artifacts/publish
 ```
 
-Mini oyun sınırları, kristal toplama, yeniden başlatma ve proje filtreleri için 16 otomatik davranış kontrolü vardır. Masaüstü ve mobil tarayıcıda filtreler, detay penceresi, klavye kontrolleri, menü, yetenek ağacı ve taşma kontrol edilir.
+Mini oyun sınırları, kristal toplama, yeniden başlatma, proje filtreleri, galeri verileri ve yayın görselleri için 21 otomatik kontrol vardır. Masaüstü ve mobil tarayıcıda filtreler, detay penceresi, galeri, klavye kontrolleri, menü, yetenek ağacı ve taşma kontrol edilir.
+
+Site bir kişisel oyun ve öğrenme arşividir; ticari hizmet veya iş teklifi çağrısı içermez. Kütüphanede altı oyun/prototip ve iki deney bulunur. Kaynağı bulunamayan AR Room Scanner geçmiş çalışma olarak etiketlenmiştir. Gelecekte yapılabilecek yeni bir AR prototipi mevcut projenin yerine tamamlanmış gibi gösterilmez.
 
 İlk HTML/CSS çalışmanız `docs/original-prototype/` altında ve Git geçmişinde saklanır.

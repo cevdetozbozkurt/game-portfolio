@@ -72,3 +72,41 @@ parts.append('</svg>');(root/'world.svg').write_text(''.join(parts),encoding='ut
 (root/'avatar.svg').write_text('''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 30" shape-rendering="crispEdges"><title>Pixel explorer</title><path fill="#15231b" d="M7 1h11v2h3v10h-3v3h3v10h-3v4H4v-4H1V15h4v-3H3V5h4z"/><path fill="#503f2e" d="M7 2h10v2h3v5H5V5h2z"/><path fill="#786044" d="M7 2h8v2H7z"/><path fill="#eac38c" d="M6 8h13v6h-3v3H9v-3H6z"/><path fill="#bf9464" d="M6 12h4v3h6v2H9v-3H6z"/><path fill="#27382a" d="M9 9h2v2H9zm7 0h2v2h-2z"/><path fill="#b0cc6b" d="M6 16h12v9H6z"/><path fill="#6f9245" d="M6 16h4v9H6zm9 0h3v9h-3z"/><path fill="#d5e58b" d="M10 17h4v2h-4z"/><path fill="#7a6643" d="M2 16h4v8H2z"/><path fill="#eac38c" d="M18 18h3v7h-3zM4 23h3v3H4z"/><path fill="#3f5146" d="M7 25h10v3H7z"/><path fill="#b49e6d" d="M5 28h6v2H5zm9 0h5v2h-5z"/></svg>''',encoding='utf-8')
 (root/'favicon.svg').write_text('''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="5" fill="#151c12"/><path d="M12 5h8v7h7v8h-7v7h-8v-7H5v-8h7z" fill="#c4f17b"/><rect x="14" y="14" width="4" height="4" fill="#151c12"/></svg>''',encoding='utf-8')
 print('Generated world.svg, avatar.svg, favicon.svg')
+
+# Clearly labeled concept covers for source-only projects without screenshots.
+parts = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" shape-rendering="crispEdges"><title>Exiled Frontiers systems illustration, not gameplay</title>']
+rect(0,0,640,400,'#192620')
+for x in range(0,640,24): rect(x,0,1,400,'#22322a')
+for y in range(0,400,24): rect(0,y,640,1,'#22322a')
+poly('80,196 320,316 560,196 560,218 320,338 80,218','#293d29')
+poly('320,316 560,196 560,218 320,338','#203629')
+for row in range(6):
+    for col in range(6):
+        x=320+(col-row)*40; y=76+(col+row)*20
+        color=['#566a3e','#607545','#6b8050'][(row+col)%3]
+        if row==3 or col==3:color='#899268'
+        poly(f'{x},{y} {x+39},{y+20} {x},{y+39} {x-39},{y+20}',color)
+        if (row,col) in [(0,0),(0,1),(1,0),(4,0),(5,1),(5,4),(1,5)]: pine(x,y+25,.36,'#264c34','#83a767')
+        if (row,col) in [(1,2),(4,4)]:
+            rect(x-5,y+5,10,10,'#ccdda5');rect(x-5,y+15,10,11,'#617e98');rect(x-7,y+26,5,4,'#233e36');rect(x+2,y+26,5,4,'#233e36')
+# A schematic workshop, warehouse and stone resource.
+poly('270,165 307,183 307,143 270,125','#879561');poly('307,183 344,165 344,125 307,143','#526c43');poly('270,125 307,105 344,125 307,145','#b2c67c');rect(314,155,9,18,'#253c2b')
+poly('362,215 390,229 419,215 390,201','#bdc299');poly('362,215 390,229 390,243 362,229','#84916b');poly('390,229 419,215 419,229 390,243','#667e59')
+rect(255,103,3,35,'#d8cc96');rect(258,103,22,12,'#bbd578')
+parts.append('<text x="26" y="33" fill="#cee5ab" font-family="monospace" font-size="12" letter-spacing="3">EXILED FRONTIERS / SYSTEMS STUDY</text>')
+parts.append('<text x="141" y="371" fill="#b2c69c" font-family="monospace" font-size="13" letter-spacing="2">GATHER  →  CRAFT  →  BUILD</text></svg>')
+(root/'images/exiled-sketch.svg').write_text(''.join(parts),encoding='utf-8')
+parts = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" shape-rendering="crispEdges"><title>Original concept illustration for a Flappy Bird learning clone, not gameplay</title>']
+rect(0,0,640,400,'#162f34')
+for x,y,w in [(35,85,145),(340,160,110),(430,80,160)]:
+    rect(x,y,w,12,'#29474a');rect(x+25,y-12,w-60,12,'#29474a')
+for x in [360,540]:
+    rect(x,0,48,116,'#4e754b');rect(x-6,110,60,17,'#769d61');rect(x+7,0,8,110,'#91b674')
+    rect(x,270,48,130,'#4e754b');rect(x-6,257,60,17,'#769d61');rect(x+7,278,8,122,'#91b674')
+rect(0,363,640,6,'#bed798');rect(0,370,640,30,'#425b45')
+# Original tiny blue bird, not a copy of the game's licensed sprite sheet.
+rect(201,185,40,30,'#7fc6c9');rect(192,191,49,18,'#7fc6c9');rect(203,177,27,8,'#7fc6c9');rect(229,181,12,13,'#eaf4d8');rect(235,182,6,8,'#25362b');rect(237,199,18,7,'#ebc67e');rect(195,199,20,10,'#467f95');rect(203,214,27,6,'#467f95')
+for x,y in [(156,198),(136,213),(117,232)]:rect(x,y,5,5,'#92baba')
+parts.append('<text x="26" y="34" fill="#b3d9ce" font-family="monospace" font-size="12" letter-spacing="2">A SMALL STUDY IN GAME FEEL</text></svg>')
+(root/'images/flappy-sketch.svg').write_text(''.join(parts),encoding='utf-8')
+print('Generated clearly labeled Exiled Frontiers and Flappy Bird concept illustrations')

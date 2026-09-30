@@ -36,3 +36,9 @@ ASP.NET Core Web API, PostgreSQL/EF Core ve yönetim paneli ayrı bir sunucu ger
 ## Eski sürüm
 
 İlk HTML/CSS çalışması `docs/original-prototype/` altında ve Git geçmişinde korunur. Canlı site yalnızca `src/ErenPortfolio` projesinden oluşturulur.
+
+## Kişisel arşiv ve AR fikri
+
+Proje kütüphanesi 6 oyun/prototip ve 2 deney içerir. Galeri, katkı, durum ve öne çıkan özellikler `PortfolioContent.cs` üzerinden güncellenir. Görseli olmayan projelerde etiketli konsept çizimler kullanılır.
+
+AR Room Scanner için yeni bir AR prototipi ileride değerlendirilebilecek bir fikirdir. Mevcut sürüm kamera erişimi istemez ve yeni bir AR uygulaması içermez. Yeni bir prototip yapılırsa kendi adı, kaynak deposu ve gerçek görüntüleriyle ayrı bir proje olarak eklenmelidir.

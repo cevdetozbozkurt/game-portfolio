@@ -2284,3 +2284,121 @@ h1[tabindex="-1"]:focus {
     margin-top: 15px;
   }
 }
+
+/* Personal game archive and project image galleries. */
+.project-card {
+  display: flex;
+  flex-direction: column;
+}
+.project-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.project-status {
+  color: var(--dim);
+  font-size: 10px;
+  margin: 12px 0 16px;
+}
+.project-bottom {
+  margin-top: auto;
+}
+.project-gallery {
+  margin: 0;
+}
+.project-gallery figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 44px;
+  padding: 8px 20px;
+  border-bottom: 1px solid var(--border);
+  font: 6px/1.8 var(--pixel);
+  color: var(--dim);
+}
+.gallery-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  white-space: nowrap;
+}
+.gallery-controls .icon-button {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  font-size: 18px;
+}
+.project-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  border-block: 1px solid var(--border);
+  padding: 16px 0;
+  margin: 18px 0;
+  font-size: 12px;
+}
+.project-meta small {
+  display: block;
+  color: var(--accent);
+  font: 6px/1.8 var(--pixel);
+  margin-bottom: 7px;
+}
+.project-highlights {
+  padding-left: 18px;
+  margin: 20px 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.project-highlights li {
+  padding-left: 4px;
+  margin-block: 5px;
+}
+.project-highlights li::marker {
+  color: var(--accent);
+}
+.dialog-copy .archive-note {
+  font-size: 12px;
+  padding: 14px 16px;
+  background: #222b1c;
+  border-left: 2px solid #627c48;
+}
+@media (min-width: 621px) {
+  .project-card.flappy {
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+  .flappy .project-art-button {
+    height: 100%;
+  }
+  .flappy .project-art {
+    height: 100%;
+    min-height: 215px;
+    aspect-ratio: auto;
+  }
+  .flappy .project-body {
+    padding: 27px 32px;
+  }
+  .flappy .project-description {
+    min-height: 0;
+  }
+  .flappy .project-bottom {
+    margin-top: 15px;
+  }
+}
+@media (max-width: 620px) {
+  .project-meta {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .project-gallery figcaption {
+    padding-inline: 13px;
+    font-size: 5px;
+  }
+  .project-status {
+    font-size: 11px;
+  }
+}
