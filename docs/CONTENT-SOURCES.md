@@ -38,3 +38,10 @@ All three CV pages were read, rendered and reviewed. Embedded PDF link annotatio
 - **Python Problem Solving:** the CV mistakenly repeats the speed-bot URL. The matching public repository is https://github.com/cevdetozbozkurt/Python_Problems_And_Solves. Its fourteen `Gun_*` folders and `Uygulama_1/NotDefteri.py` / `Uygulama_2/game.py` confirm exercises, a CLI notebook and a word game. The corrected link is used. No source credentials or external API calls were imported.
 
 `scripts/generate-project-art.py` produces nine original vector covers for projects without screenshots. Maps, charts, diagrams and interfaces in these covers are illustrative, not recorded measurements or project output. They are labelled `CONCEPT ILLUSTRATION` or `SYSTEMS ILLUSTRATION`, including in image descriptions. Awards come from the supplied CV, not an independently checked competition record.
+
+## Unity Learn journal (October 2026)
+
+- Repository: https://github.com/cevdetozbozkurt/UnityLearn. Its README states that Unity Learn coursework is used to refresh and reinforce Unity knowledge. `Create with Code/Prototype 1/Assets/Scripts/PlayerController.cs` and `FollowPlayer.cs` establish the exercise context. The user described this as an ongoing project with regular explanatory commits. It is labelled as coursework, not an original standalone game or an officially affiliated Unity product.
+- `unity-learn-sketch.svg` is an original vector illustration of a notebook, code window and learning path, explicitly labelled as concept art. No Unity course artwork or brand logo was copied.
+- The latest commit is requested at runtime from the public GitHub REST API when this project's details open, and through its Refresh button. No commit message or completion level is hardcoded. The default branch is discovered by GitHub's commits endpoint, so renaming `master` does not break the feed.
+- API reference: https://docs.github.com/en/rest/commits/commits#list-commits. Public resources support unauthenticated access. API version `2026-03-10` and browser CORS access were verified during implementation.

@@ -42,7 +42,7 @@
         <div class="project-grid">
             @foreach (var project in PortfolioContent.Filter(activeCategory))
             {
-                <article class="project-card @project.Id @(project.Id == "animal-colouring" ? "project-wide" : "")" @key="project.Id">
+                <article class="project-card @project.Id @(project.Id == "animal-colouring" || project.LiveRepository is not null ? "project-wide" : "")" @key="project.Id">
                     <button class="project-art-button" @onclick="() => OpenProject(project)" aria-label="View @project.Title project details"><div class="project-art">
                         @if (project.Image is not null) { <img src="@project.Image" alt="@project.ImageAlt" loading="lazy" width="640" height="360" /> }
                         else { <div class="ar-concept" aria-hidden="true"><div class="room-grid"></div><div class="scan-cube"></div><span class="scan-cross">+</span><span class="scan-label">MAPPING THE REAL WORLD</span></div> }
@@ -50,6 +50,7 @@
                     </div></button>
                     <div class="project-body"><p class="project-context"><span class="small-square"></span>@project.Context</p><h3>@project.Title</h3>
                         @if (project.Recognition is not null) { <p class="project-recognition"><span aria-hidden="true">✧</span> @project.Recognition</p> }
+                        @if (project.LiveRepository is not null) { <p class="project-live-note"><span class="status-dot" aria-hidden="true"></span> Follow my latest commit in the project details</p> }
                         <p class="project-description">@project.Description</p><p class="project-status">@project.Status</p><div class="project-bottom"><div class="tags">@foreach(var tech in project.Technologies.Take(2)) { <span>@tech</span> }</div><button class="project-details-link" @onclick="() => OpenProject(project)" aria-label="Read about @project.Title">Details <span aria-hidden="true">↗</span></button></div></div>
                 </article>
             }
@@ -73,7 +74,7 @@
     @if (selectedProject is not null)
     {
         <div class="dialog-top"><span class="section-index">PROJECT FILE / @selectedProject.Context</span><button class="icon-button" @onclick="CloseProject" aria-label="Close project details">×</button></div>
-        @if (selectedProject.Media.Count > 0)
+        @if (selectedProject.Media.Count > 0 && selectedProject.LiveRepository is null)
         {
             var media = selectedProject.Media[activeImage];
             <figure class="project-gallery">
@@ -88,7 +89,9 @@
         }
         <div class="dialog-copy"><h2 id="dialog-title">@selectedProject.Title</h2>
         @if (selectedProject.Recognition is not null) { <p class="project-recognition"><span aria-hidden="true">✧</span> @selectedProject.Recognition</p> }
-        <div class="project-meta"><span><small>MY PART</small>@selectedProject.Role</span><span><small>PROJECT STATUS</small>@selectedProject.Status</span></div><p>@selectedProject.Detail</p>
+        <div class="project-meta"><span><small>MY PART</small>@selectedProject.Role</span><span><small>PROJECT STATUS</small>@selectedProject.Status</span></div>
+        @if (selectedProject.LiveRepository is not null) { <LatestCommit Repository="@selectedProject.LiveRepository" @key="projectVisit" /> }
+        <p>@selectedProject.Detail</p>
         @if (selectedProject.Highlights is { Length: > 0 }) { <ul class="project-highlights">@foreach(var highlight in selectedProject.Highlights) { <li>@highlight</li> }</ul> }
         <div class="tags">@foreach(var tech in selectedProject.Technologies) { <span>@tech</span> }</div><div class="dialog-actions">
         @if (selectedProject.SourceUrl is not null) { <a class="button button-secondary" href="@selectedProject.SourceUrl" target="_blank" rel="noopener noreferrer">View source ↗</a> }
@@ -111,6 +114,7 @@
     private bool menuOpen, motionPaused, openDialogAfterRender;
     private PortfolioProject? selectedProject;
     private int activeImage;
+    private int projectVisit;
     private ElementReference projectDialog;
     private void CloseMenu() => menuOpen = false;
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -118,7 +122,7 @@
         if (firstRender) { motionPaused = await JS.InvokeAsync<bool>("portfolio.initialize"); StateHasChanged(); }
         if (openDialogAfterRender) { openDialogAfterRender = false; await JS.InvokeVoidAsync("portfolio.openDialog", projectDialog); }
     }
-    private void OpenProject(PortfolioProject project) { selectedProject = project; activeImage = 0; openDialogAfterRender = true; }
+    private void OpenProject(PortfolioProject project) { selectedProject = project; activeImage = 0; projectVisit++; openDialogAfterRender = true; }
     private void ChangeImage(int direction) { if (selectedProject is not null && selectedProject.Media.Count > 1) activeImage = (activeImage + direction + selectedProject.Media.Count) % selectedProject.Media.Count; }
     private async Task CloseProject() => await JS.InvokeVoidAsync("portfolio.closeDialog", projectDialog);
     private async Task ToggleMotion() { motionPaused = !motionPaused; await JS.InvokeVoidAsync("portfolio.setMotion", motionPaused); }

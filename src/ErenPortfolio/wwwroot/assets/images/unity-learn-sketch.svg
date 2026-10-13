@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" shape-rendering="crispEdges">
+  <title>Original concept illustration of a Unity learning journal; not a course screenshot</title>
+  <defs><pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#25372d"/></pattern></defs>
+  <path fill="#17271f" d="M0 0h640v400H0z"/><path fill="url(#grid)" d="M0 0h640v400H0z"/>
+  <g font-family="monospace" font-size="12" letter-spacing="2" fill="#b9d990"><text x="32" y="38">LEARN / BUILD / COMMIT</text><text x="384" y="345">NEXT LESSON →</text></g>
+  <path fill="#0e1b16" d="M90 103h193v212H90zM324 110h221v169H324z"/>
+  <path fill="#7f9870" d="M80 90h193v212H80z"/><path fill="#cad4ac" d="M91 101h171v189H91z"/>
+  <path fill="#748967" d="M108 101h5v189h-5z"/>
+  <g fill="#31573d"><path d="M127 125h101v8H127zM127 148h78v6H127zM151 183h78v5H151zM151 218h67v5H151zM151 253h90v5H151z"/><path d="M125 180h14v14h-14zM125 215h14v14h-14zM125 250h14v14h-14z"/></g>
+  <path fill="#b7d886" d="m128 183 3 3 9-10 4 4-13 14-7-7zM129 219h6v6h-6z"/>
+  <path fill="#678b70" d="M311 97h221v169H311z"/><path fill="#213a2a" d="M316 124h211v136H316z"/>
+  <path fill="#cbdea1" d="M325 108h6v6h-6zM338 108h6v6h-6zM351 108h6v6h-6z"/>
+  <path d="m366 154-18 18 18 18m104-36 18 18-18 18m-63-44-12 53" fill="none" stroke="#c6e89b" stroke-width="7"/>
+  <path fill="#76a285" d="M338 219h67v5h-67zM419 219h84v5h-84zM338 235h117v5H338z"/>
+  <path d="M83 343h238v-27h196" fill="none" stroke="#6e956e" stroke-width="4"/>
+  <g fill="#b9da84"><path d="M80 337h12v12H80zM169 337h12v12h-12zM260 337h12v12h-12zM373 310h12v12h-12z"/></g>
+  <path fill="#e0c796" d="m512 307 9 9-9 9-9-9z"/>
+</svg>

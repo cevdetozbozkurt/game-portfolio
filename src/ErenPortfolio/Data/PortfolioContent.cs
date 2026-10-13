@@ -13,6 +13,13 @@ public static class PortfolioContent
 
     public static IReadOnlyList<PortfolioProject> Projects { get; } =
     [
+        new("unity-learn", "Unity Learn Journal", "Games", "CURRENT QUEST · CREATE WITH CODE",
+            "Back to the fundamentals, one lesson at a time. My ongoing Unity Learn practice, with a commit for each step forward.",
+            "An ongoing collection of Unity Learn coursework where I revisit and reinforce my Unity and C# knowledge. The repository currently includes Create with Code exercises, with work on player controls and a following camera in Prototype 1. I keep a regular, descriptive commit history as a record of what I practise and complete. This is a learning journal built around course exercises, rather than a standalone original game.",
+            ["Unity", "C#", "Unity Learn"], "assets/images/unity-learn-sketch.svg", "Original pixel illustration of a learning notebook, code window and progression path; not a course screenshot.",
+            "https://github.com/cevdetozbozkurt/UnityLearn", Status: "In progress · Unity Learn", Role: "Learning & hands-on practice", ImageLabel: "CONCEPT ILLUSTRATION",
+            Highlights: ["Create with Code course exercises", "Revisiting Unity and C# fundamentals", "A regular commit journal documenting each step"],
+            LiveRepository: "cevdetozbozkurt/UnityLearn"),
         new("exiled-frontiers", "Exiled Frontiers", "Games", "SOLO RTS PROTOTYPE",
             "A settlement starts with a single worker. An experiment in resource gathering, building and AI.",
             "A solo, isometric real-time strategy and city-building prototype. I focused on the systems underneath the world: worker roles, NavMesh movement, a shared inventory, crafting and grid-based construction. The prototype uses simple 3D shapes so the core loop can be tested. A downloadable Windows build is available on itch.io.",

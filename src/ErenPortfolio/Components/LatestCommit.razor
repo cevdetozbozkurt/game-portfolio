@@ -1,0 +1,64 @@
+@using System.Globalization
+@using ErenPortfolio.Services
+@implements IDisposable
+@inject GitHubCommitService Commits
+
+<section class="commit-panel" aria-labelledby="commit-heading" aria-busy="@loading.ToString().ToLowerInvariant()">
+    <div class="commit-panel-header">
+        <h3 id="commit-heading"><span aria-hidden="true">⌥</span> Latest progress</h3>
+        <button class="commit-refresh" @onclick="LoadAsync" disabled="@loading" aria-label="Refresh latest commit">@(loading ? "Checking…" : "Refresh ↻")</button>
+    </div>
+    <p class="commit-intro">A new lesson, a small improvement, another step forward.</p>
+    <div class="commit-result" aria-live="polite">
+        @if (loading && result is null)
+        {
+            <p class="commit-state">Reading the latest update from GitHub…</p>
+        }
+        @if (result is { Status: not CommitLoadStatus.Loaded })
+        {
+            <p class="commit-state">@FailureMessage</p>
+        }
+        @if (result?.Commit is { } commit)
+        {
+            <div class="commit-meta"><span class="commit-sha">@commit.ShortSha</span>
+                @if (commit.CommittedAt is { } date) { <time datetime="@date.ToString("O")">@FormatDate(date)</time> }
+            </div>
+            <h4 class="commit-title">@commit.Title</h4>
+            @if (!string.IsNullOrEmpty(commit.Body)) { <p class="commit-body">@commit.Body</p> }
+            <div class="commit-footer"><a href="@commit.Url" target="_blank" rel="noopener noreferrer">View commit ↗</a><span>@(result.IsStale ? "Last loaded" : "Checked") <time datetime="@commit.RetrievedAt.ToString("O")">@FormatDate(commit.RetrievedAt)</time></span></div>
+        }
+    </div>
+    <a class="commit-history" href="https://github.com/@Repository/commits" target="_blank" rel="noopener noreferrer">Explore the commit history ↗</a>
+</section>
+
+@code {
+    [Parameter, EditorRequired] public string Repository { get; set; } = "";
+    private readonly CancellationTokenSource lifetime = new();
+    private CommitLoadResult? result;
+    private bool loading;
+    private string FailureMessage
+    {
+        get
+        {
+            var reason = result?.Status switch
+            {
+                CommitLoadStatus.Empty => "No commits have been published yet.",
+                CommitLoadStatus.RateLimited => "GitHub is limiting updates right now. Try again later or open the commit history.",
+                CommitLoadStatus.TimedOut => "The update took too long to arrive. Try again or open the commit history.",
+                _ => "Couldn't load the latest update. Try again or open the commit history."
+            };
+            return result?.IsStale == true ? reason + " Showing the last successfully loaded update below." : reason;
+        }
+    }
+    private static string FormatDate(DateTimeOffset date) => date.ToUniversalTime().ToString("dd MMM yyyy · HH:mm 'UTC'", CultureInfo.InvariantCulture);
+    protected override Task OnInitializedAsync() => LoadAsync();
+    private async Task LoadAsync()
+    {
+        if (loading || lifetime.IsCancellationRequested) return;
+        loading = true;
+        try { result = await Commits.GetLatestAsync(Repository, lifetime.Token); }
+        catch (OperationCanceledException) when (lifetime.IsCancellationRequested) { }
+        finally { loading = false; }
+    }
+    public void Dispose() { lifetime.Cancel(); lifetime.Dispose(); }
+}

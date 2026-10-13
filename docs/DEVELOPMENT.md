@@ -39,8 +39,18 @@ dotnet run --project tests/Portfolio.Checks
 dotnet publish src/ErenPortfolio -c Release -o artifacts/publish
 ```
 
-Mini oyun sınırları, kristal toplama, yeniden başlatma, proje filtreleri, galeri verileri, arşiv notları, düzeltilen CV bağlantısı ve yayın görselleri için 28 otomatik kontrol vardır. Masaüstü ve mobil tarayıcıda filtreler, detay penceresi, galeri, klavye kontrolleri, menü, yetenek ağacı ve taşma kontrol edilir.
+Mini oyun, filtreler, galeriler, arşiv bilgileri ve GitHub commit servisi için 50 otomatik kontrol vardır. Commit kontrolleri gerçek GitHub'a istek atmaz; yenilenen mesajı, çok satırlı açıklamaları, boş depoyu, hatalı yanıtları, istek sınırını, çevrimdışı durumu, zaman aşımını ve iptali sahte HTTP yanıtlarıyla doğrular. Masaüstü ve mobil tarayıcıda görünüm ve gerçek GitHub bağlantısı ayrıca kontrol edilir.
 
-Site bir kişisel oyun ve öğrenme arşividir; ticari hizmet veya iş teklifi çağrısı içermez. Kütüphanede 19 proje bulunur: yedi oyun, üç yapay zekâ/veri projesi, üç web/bulut projesi ve altı deney. Oyunlar ilk açılışta seçilidir; tüm projelere filtrelerden ulaşılır. Kaynağı bulunamayan AR Room Scanner ve bulut kampı projesi, bağlantı paylaşılmayan RAG ve eğitim oyunu ayrı açıklamalı kayıtlarla gösterilir. Gelecekte yapılabilecek yeni bir AR prototipi mevcut projenin yerine tamamlanmış gibi gösterilmez. CV'deki Python alıştırmaları bağlantısı doğrulanan doğru depoya yönlendirilir; çelişkili proje tarihleri yayımlanmaz.
+Site bir kişisel oyun ve öğrenme arşividir; ticari hizmet veya iş teklifi çağrısı içermez. Kütüphanede 20 proje bulunur: oyunlar sekmesinde devam eden Unity Learn günlüğü dahil sekiz çalışma, üç yapay zekâ/veri projesi, üç web/bulut projesi ve altı deney. Oyunlar ilk açılışta seçilidir; tüm projelere filtrelerden ulaşılır. Kaynağı bulunamayan AR Room Scanner ve bulut kampı projesi, bağlantı paylaşılmayan RAG ve eğitim oyunu ayrı açıklamalı kayıtlarla gösterilir. Gelecekte yapılabilecek yeni bir AR prototipi mevcut projenin yerine tamamlanmış gibi gösterilmez. CV'deki Python alıştırmaları bağlantısı doğrulanan doğru depoya yönlendirilir; çelişkili proje tarihleri yayımlanmaz.
+
+## Canlı Unity Learn commit bilgisi
+
+`Unity Learn Journal` detayları her açıldığında ve `Refresh` düğmesine basıldığında, tarayıcı `https://api.github.com/repos/cevdetozbozkurt/UnityLearn/commits?per_page=1` adresinden varsayılan dalın son commit'ini ister. Diğer projeler ve ilk sayfa yüklemesi commit isteği yapmaz. Arka planda periyodik sorgulama yoktur. Yeni commit'ler için portfolyonun yeniden yayımlanması gerekmez.
+
+C# servisi `Services/GitHubCommitService.cs`, görünümü `Components/LatestCommit.razor` dosyasındadır. Proje açılışında bileşen yeni anahtarla oluşturulur; önceki isteği iptal edilir. Tarayıcı fetch seçenekleri `no-store` ve `omit` kullanır. Kimlik bilgisi, token veya ücretli sunucu gerekmez. GitHub'ın kendi yanıt önbelleği kısa süreli gecikmeye neden olabilir; panel kontrol saatini UTC olarak gösterir.
+
+İstek sekiz saniyede zaman aşımına uğrar. Erişim/limit/ağ sorunu olduğunda açıklama ve GitHub bağlantısı çalışmaya devam eder. Bu oturumda daha önce başarılı bir yanıt alındıysa yalnızca bellekte tutulan son commit, eski veri olduğu ve son yüklenme zamanı belirtilerek gösterilir. Başarılı yanıt önbellekten sunulmaz; her açılış yeni istek başlatır. Ham HTML veya Markdown çalıştırılmaz; mesaj metni Razor tarafından kodlanır. Commit bağlantısı doğrulanan SHA ve sabit GitHub alan adından oluşturulur.
+
+GitHub herkese açık, kimlik doğrulamasız REST erişimini IP başına sınırlar (uygulama sırasında 60 istek/saat). Bu sınır ziyaretçinin aynı IP üzerinden yaptığı diğer API çağrılarıyla paylaşılır. Token'ı istemci koduna eklemek yerine gerektiğinde ziyaretçi commit geçmişine yönlendirilir. Kaynak: https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api.
 
 İlk HTML/CSS çalışmanız `docs/original-prototype/` altında ve Git geçmişinde saklanır.
