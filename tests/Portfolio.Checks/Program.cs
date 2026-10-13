@@ -46,4 +46,5 @@ Check(PortfolioContent.Projects.Where(p => p.PlayUrl is not null).All(p => p.Sta
 var repository = new DirectoryInfo(AppContext.BaseDirectory);
 while (repository is not null && !Directory.Exists(Path.Combine(repository.FullName, "src", "ErenPortfolio"))) repository = repository.Parent;
 Check(repository is not null && PortfolioContent.Projects.SelectMany(p => p.Media).All(media => File.Exists(Path.Combine(repository.FullName, "src", "ErenPortfolio", "wwwroot", media.Path))), "Every portfolio image exists before publication");
+await CommitChecks.RunAsync(Check);
 Console.WriteLine($"\n{checks} checks passed.");

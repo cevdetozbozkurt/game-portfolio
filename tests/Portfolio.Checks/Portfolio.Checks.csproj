@@ -8,5 +8,6 @@
   <ItemGroup>
     <Compile Include="../../src/ErenPortfolio/Models/*.cs" Link="Models/%(Filename)%(Extension)" />
     <Compile Include="../../src/ErenPortfolio/Data/*.cs" Link="Data/%(Filename)%(Extension)" />
+    <Compile Include="../../src/ErenPortfolio/Services/*.cs" Link="Services/%(Filename)%(Extension)" />
   </ItemGroup>
 </Project>
